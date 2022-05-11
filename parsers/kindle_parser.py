@@ -6,7 +6,7 @@ from parsers.knotes_parser import KnoteParser
 
 
 class KindleNotesParser(KnoteParser):
-    def __init__(self, filename='') -> None:
+    def __init__(self, filename) -> None:
         super().__init__(filename)
         self.notes = self._parse_all_notes()
 
@@ -38,11 +38,11 @@ class KindleNotesParser(KnoteParser):
 
         return note_obj
 
-    def get_all_books(self, notes: list[Note]) -> list[str]:
-        names = [note.bookname for note in notes]
+    def get_all_books(self) -> list[str]:
+        names = [note.bookname for note in self.notes]
         return list(set(names))
 
-    def get_notes_by_bookname(self, bookname: str, notes: list[Note]) -> list[Note]:
-        notes = [note for note in notes if note.bookname == bookname]
+    def get_notes_by_bookname(self, bookname: str) -> list[Note]:
+        notes = [note for note in self.notes if note.bookname == bookname]
 
         return notes

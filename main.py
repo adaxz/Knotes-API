@@ -11,8 +11,8 @@ if __name__ == "__main__":
     database_id = '03cd367b95a64ffea462c0b2bb67576c'
 
     parser = KindleNotesParser(filename)
-    # print(parser.get_all_books(parser.notes))
-    notes = parser.get_notes_by_bookname(bookname=bookname, notes=parser.notes)
+    # print(parser.get_all_books())
+    notes = parser.get_notes_by_bookname(bookname=bookname)
     notion_notes = parser.notes_to_page_content(notes)
 
     # parser = KoboNotesParser('')

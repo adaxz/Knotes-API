@@ -3,7 +3,7 @@ from parsers.models import Note, NotionBlock
 
 
 class KnoteParser(ABC):
-    def __init__(self, filename) -> None:
+    def __init__(self, filename='') -> None:
         self.filename = filename
 
     def note_to_notion_block(self, note: Note) -> list[dict]:
@@ -20,3 +20,11 @@ class KnoteParser(ABC):
             result.extend(self.note_to_notion_block(note))
 
         return result
+
+    @abstractmethod
+    def get_all_books(self) -> list[str]:
+        pass
+
+    @abstractmethod
+    def get_notes_by_bookname(self, bookname: str) -> list[Note]:
+        pass
