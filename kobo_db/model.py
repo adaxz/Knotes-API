@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Text, REAL
+from sqlalchemy import Column, Integer, Text, REAL
 from sqlalchemy.ext.declarative import declarative_base
 
 _base = declarative_base()
@@ -15,7 +15,7 @@ class Bookmark(_base):
     ChapterProgress = Column(REAL)
 
     def __repr__(self) -> str:
-        return f"Bookmark(ContentID={self.ContentID}, BookmarkID={self.BookmarkID})"
+        return f"Bookmark(ContentID={self.ContentID}, BookmarkID={self.BookmarkID}, VolumeID={self.VolumeID})"
 
 
 class Content(_base):
@@ -26,6 +26,7 @@ class Content(_base):
     BookID = Column(Text)
     BookTitle = Column(Text)
     Title = Column(Text)
+    VolumeIndex = Column(Integer)
 
     def __repr__(self) -> str:
-        return f"Content(BookTitle={self.BookTitle}, ContentID={self.ContentID})"
+        return f"Content(BookTitle={self.BookTitle}, ContentType={self.ContentType}, ContentID={self.ContentID}, Title={self.Title}, VolumeIndex={self.VolumeIndex})"
