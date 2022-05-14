@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from enum import Enum
 
 
 @dataclass
@@ -35,3 +36,12 @@ class NotionBlock:
                 ],
             },
         }
+
+
+class DeviceType(Enum):
+    KINDLE = 'kindle'
+    KOBO = 'kobo'
+
+    @classmethod
+    def to_list(cls) -> list[str]:
+        return [e.value for e in cls]
