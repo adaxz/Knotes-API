@@ -31,17 +31,14 @@ class KoboNotesParser(KnoteParser):
             bookmark.ContentID)
         try:
             chapter_name = self._form_chapter_name(
-                all_contents, bookmark, content.Title)
+                all_contents, content, content.Title)
         except:
             chapter_name = content.BookTitle
         percentage = round(bookmark.ChapterProgress, 4)
 
         return KoboNotePosition(chapter_name, percentage)
 
-    def _form_chapter_name(self, all_contents: list[Content], bookmark: Bookmark, chapter_name: str) -> str:
-        content = self.content_table.select_content_mark_by_content_id(
-            bookmark.ContentID)
-
+    def _form_chapter_name(self, all_contents: list[Content], content: Content, chapter_name: str) -> str:
         content_level = int(content.ContentID[-1])
 
         if content_level == 1:
