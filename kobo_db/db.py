@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import config
-from kobo_db.model import Bookmark, Content
+from kobo_db.model import Bookmark, Content, Word
 import os
 from abc import ABC
 
@@ -9,7 +9,7 @@ from abc import ABC
 class DatabaseTable(ABC):
     def __init__(self, filename) -> None:
         self.DB_CONNECT_STR = 'sqlite:///' + \
-            os.path.join(config.FIEL_DIR, filename)
+            os.path.join(config.KOBO_FILE_DIR, filename)
         self._engine = create_engine(self.DB_CONNECT_STR)
         self._session = sessionmaker(bind=self._engine)
 
@@ -46,3 +46,14 @@ class ContentTable(DatabaseTable):
 
     def select_contents_by_book_id(self, book_id: str) -> list[Content]:
         return self._session().query(Content).filter(Content.BookID == book_id).all()
+
+
+class WordListTable(DatabaseTable):
+    def __init__(self, filename) -> None:
+        super().__init__(filename)
+
+    def select_word_by_test(self, text: str) -> Word:
+        return self._session().query(Word).filter(Word.Text == text).first()
+
+    def select_words_by_volume_id(self, volume_id: str) -> list[Word]:
+        return self._session().query(Word).filter(Word.VolumeId == volume_id).order_by(Word.DateCreated).all()
