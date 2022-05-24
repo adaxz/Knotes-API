@@ -30,3 +30,15 @@ class Content(_base):
 
     def __repr__(self) -> str:
         return f"Content(BookTitle={self.BookTitle}, ContentType={self.ContentType}, ContentID={self.ContentID}, Title={self.Title}, VolumeIndex={self.VolumeIndex})"
+
+
+class Word(_base):
+    __tablename__ = "WordList"
+
+    VolumeId = Column(Text)
+    DictSuffix = Column(Text)
+    DateCreated = Column(Text)
+    Text = Column(Text, primary_key=True)
+
+    def __repr(self) -> str:
+        return f"WordList(Text={self.Text}, VolumeId={self.VolumeId})"
