@@ -6,3 +6,8 @@
 # cache
 __pycache__
 *.pyc
+
+*.code-workspace
+
+*.txt
+*.sqlite
