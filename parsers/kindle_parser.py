@@ -20,7 +20,7 @@ class KindleNotesParser(KnoteParser):
         return notes
 
     def _read_txt(self, filename: str) -> str:
-        fp = os.path.join(config.FIEL_DIR, filename)
+        fp = os.path.join(config.KINDLE_FILE_DIR, filename)
         with open(fp, 'r') as txt_file:
             text = txt_file.read()
 
